@@ -5,6 +5,7 @@ import numpy as np
 import pyautogui
 from pynput.mouse import Controller
 import time
+import sys
 
 app = Flask(__name__)
 
@@ -57,13 +58,10 @@ def index():
 
 if __name__ == '__main__':
     host = '192.168.1.103'
-    port = '5000'
+    port = 5000
 
-    # print("Ustawienia domyślne:", f'host = {host}', f'port = {port}')
-    # answer = input("Czy zmienić ustawienia? [T/N] ").lower()
-    #
-    # if answer == 'T':
-    #     host = input("Proszę podać adres hosta: ")
-    #     port = input("Proszę podać numer portu: ")
+    if len(sys.argv) == 3:
+        host = sys.argv[1]
+        port = int(sys.argv[2])
 
-    app.run(host="192.168.1.103", port=5000, debug=False)
+    app.run(host=host, port=port, debug=False)
